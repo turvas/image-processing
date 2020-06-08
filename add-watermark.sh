@@ -1,9 +1,8 @@
 #!/bin/bash
 # $1 if file or directory contaaining *.jpg files
 
-# read APIKEY
 PATH=$1
-
+WATERMARK="/mnt/h/kostyymilaenutus/logod ja watermargid/watermark300.png"
 # $1 file with ful path
 # saves file in same dir, with extra jpg extension
 function processFile {
@@ -15,7 +14,7 @@ function processFile {
                         read -n1 X
                         if [ $X != 'y' ]; then exit 1; fi
                 fi
-                /usr/bin/composite -dissolve 40% -gravity center "/mnt/h/kostyymilaenutus/logod ja watermargid/watermark300.png" $FILE $FILE.jpg                
+                /usr/bin/composite -dissolve 40% -gravity center $WATERMARK $FILE $FILE.jpg                
         else
                 echo ERROR: file $FILE not found
         fi
