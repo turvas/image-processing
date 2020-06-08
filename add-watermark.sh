@@ -14,7 +14,7 @@ function processFile {
                         read -n1 X
                         if [ $X != 'y' ]; then exit 1; fi
                 fi
-                /usr/bin/composite -dissolve 40% -gravity center $WATERMARK $FILE $FILE.jpg                
+                /usr/bin/composite -dissolve 40% -gravity center "$WATERMARK" $FILE $FILE.jpg                
         else
                 echo ERROR: file $FILE not found
         fi
