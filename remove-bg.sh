@@ -4,18 +4,21 @@
 # read APIKEY
 source remove-bg.apikey
 PATH=$1
-
+WATERMARK=$2
 # $1 file with ful path
 # saves file in same dir, with extra jpg extension
 function processFile {
         FILE=$1    
         if [ -n "$1" ] && [ -f $FILE ]; then 
-                echo processing $FILE
+                echo backround processing $FILE
                 /usr/bin/curl -H "X-API-Key: $APIKEY"            \
                         -H "accept: image/*"            \
                         -F "image_file=@$FILE"          \
                         -F "format=jpg"                 \
                         -X POST https://api.remove.bg/v1.0/removebg -o $FILE.jpg
+                if [ -n "$WATERMARK" ]; then
+                        ./add-watermark.sh $FILE.jpg
+                fi
         else
                 echo ERROR: file $FILE not found
         fi

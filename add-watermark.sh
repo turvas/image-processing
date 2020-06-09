@@ -8,7 +8,7 @@ WATERMARK="/mnt/h/kostyymilaenutus/logod ja watermargid/watermark300.png"
 function processFile {
         FILE=$1    
         if [ -n "$1" ] && [ -f $FILE ]; then 
-                echo processing $FILE
+                echo watermark processing $FILE
                 if [ -f $FILE.jpg ]; then
                         echo "WARNING: Output file $FILE.jpg already exist, overwrite ? [y/N]"
                         read -n1 X
